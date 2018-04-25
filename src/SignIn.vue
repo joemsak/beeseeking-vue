@@ -1,5 +1,12 @@
 <template>
-  <button @click="handleGoogle">Sign in with Google</button>
+  <p>
+    <button
+      class="btn btn-primary"
+      @click="handleGoogle"
+    >
+      Sign in with Google
+    </button>
+  </p>
 </template>
 
 <script>
