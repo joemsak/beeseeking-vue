@@ -8,6 +8,7 @@
     </router-link>
 
     {{ currentUser.displayName }}
+    <a @click.prevent="logout">Log out</a>
 
     <div>
       <div
@@ -40,9 +41,16 @@
 
 <script>
 import { mapState } from 'vuex'
+import firebase from 'firebase'
 
 export default {
   computed: mapState(['listings', 'currentUser']),
+
+  methods: {
+    logout () {
+      firebase.auth().signOut()
+    },
+  },
 }
 </script>
 
@@ -54,5 +62,9 @@ export default {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   background: white;
   padding: 1rem;
+}
+
+a {
+  cursor: pointer;
 }
 </style>
