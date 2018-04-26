@@ -28,7 +28,7 @@ new Vue({
   components: {
      App,
      SignIn,
-  },
+     },
   template: '<App v-if="appReady && !currentUser.guest" /><SignIn v-else />',
 
   mounted () {
