@@ -7,44 +7,26 @@
     My property is a...
 
     <listing-inputs
-      :other-chosen="propertyTypeOther.length"
       :list="propertyTypes"
+      other-placeholder="Something else..."
       v-model="propertyType"
-    >
-      <input
-        type="text"
-        placeholder="Something else..."
-        v-model="propertyTypeOther"
-      />
-    </listing-inputs>
+    />
 
     ...and it is a...
 
     <listing-inputs
-      :other-chosen="privacyTypeOther.length"
       :list="privacyTypes"
+      other-placeholder="Best described some other way"
       v-model="privacyType"
-    >
-      <input
-        type="text"
-        placeholder="Best described some other way"
-        v-model="privacyTypeOther"
-      />
-    </listing-inputs>
+    />
 
     ...on the...
 
     <listing-inputs
-      :other-chosen="accessTypeOther.length"
       :list="accessTypes"
+      other-placeholder="Some other structure"
       v-model="accessType"
-    >
-      <input
-        type="text"
-        placeholder="Some other structure"
-        v-model="accessTypeOther"
-      />
-    </listing-inputs>
+    />
 
     <div class="row justify-content-end">
       <router-link
@@ -66,7 +48,6 @@ export default {
   data () {
     return {
       propertyType: '',
-      propertyTypeOther: '',
       propertyTypes: [
         'Farm',
         'Backyard or Lawn',
@@ -75,14 +56,12 @@ export default {
       ],
 
       privacyType: '',
-      privacyTypeOther: '',
       privacyTypes: [
         'Public space',
         'Private space',
       ],
 
       accessType: '',
-      accessTypeOther: '',
       accessTypes: [
         'Ground',
         'Roof',
@@ -97,14 +76,6 @@ export default {
   },
 
   watch: {
-    propertyTypeOther () {
-      if (this.propertyTypeOther.length) this.propertyType = ''
-
-      this.$store.dispatch('updateNewListingProps', {
-        propertyTypeOther: this.propertyTypeOther,
-      })
-    },
-
     propertyType () {
       if (this.propertyType.length) this.propertyTypeOther = ''
 
@@ -113,27 +84,11 @@ export default {
       })
     },
 
-    privacyTypeOther () {
-      if (this.privacyTypeOther.length) this.privacyType = ''
-
-      this.$store.dispatch('updateNewListingProps', {
-        privacyTypeOther: this.privacyTypeOther,
-      })
-    },
-
     privacyType () {
       if (this.privacyType.length) this.privacyTypeOther = ''
 
       this.$store.dispatch('updateNewListingProps', {
         privacyType: this.privacyType,
-      })
-    },
-
-    accessTypeOther () {
-      if (this.accessTypeOther.length) this.accessType = ''
-
-      this.$store.dispatch('updateNewListingProps', {
-        accessTypeOther: this.accessTypeOther,
       })
     },
 
@@ -148,13 +103,8 @@ export default {
 
   mounted () {
     this.propertyType = this.newListing.propertyType
-    this.propertyTypeOther = this.newListing.propertyTypeOther
-
     this.privacyType = this.newListing.privacyType
-    this.privacyTypeOther = this.newListing.privacyTypeOther
-
     this.accessType = this.newListing.accessType
-    this.accessTypeOther = this.newListing.accessTypeOther
   },
 }
 </script>

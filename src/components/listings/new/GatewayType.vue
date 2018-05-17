@@ -7,30 +7,18 @@
     The area is accessible via...
 
     <listing-inputs
-      :other-chosen="gatewayTypeOther.length"
       :list="gatewayTypes"
+      other-placeholder="Some other way..."
       v-model="gatewayType"
-    >
-      <input
-        type="text"
-        placeholder="Some other way..."
-        v-model="gatewayTypeOther"
-      />
-    </listing-inputs>
+    />
 
     ...during the following times...
 
     <listing-inputs
-      :other-chosen="hoursAccessibleOther.length"
       :list="hoursAccessibleOptions"
+      other-placeholder="Something else..."
       v-model="hoursAccessible"
-    >
-      <input
-        type="text"
-        placeholder="Something else..."
-        v-model="hoursAccessibleOther"
-      />
-    </listing-inputs>
+    />
 
     <div class="row justify-content-between">
       <router-link
@@ -59,7 +47,6 @@ export default {
   data () {
     return {
       gatewayType: '',
-      gatewayTypeOther: '',
       gatewayTypes: [
         'a locked fence',
         'an unlocked fence',
@@ -70,7 +57,6 @@ export default {
       ],
 
       hoursAccessible: '',
-      hoursAccessibleOther: '',
       hoursAccessibleOptions: [
         '24 hours a day',
         'on weekends',
@@ -86,27 +72,11 @@ export default {
   },
 
   watch: {
-    gatewayTypeOther () {
-      if (this.gatewayTypeOther.length) this.gatewayType = ''
-
-      this.$store.dispatch('updateNewListingProps', {
-        gatewayTypeOther: this.gatewayTypeOther,
-      })
-    },
-
     gatewayType () {
       if (this.gatewayType.length) this.gatewayTypeOther = ''
 
       this.$store.dispatch('updateNewListingProps', {
         gatewayType: this.gatewayType,
-      })
-    },
-
-     hoursAccessibleOther () {
-      if (this.hoursAccessibleOther.length) this.hoursAccessible = ''
-
-      this.$store.dispatch('updateNewListingProps', {
-        hoursAccessibleOther: this.hoursAccessibleOther,
       })
     },
 
@@ -129,10 +99,7 @@ export default {
 
   mounted () {
     this.gatewayType = this.newListing.gatewayType
-    this.gatewayTypeOther = this.newListing.gatewayTypeOther
-
     this.hoursAccessible = this.newListing.hoursAccessible
-    this.hoursAccessibleOther = this.newListing.hoursAccessibleOther
   },
 }
 </script>

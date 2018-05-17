@@ -18,14 +18,25 @@
     </li>
 
     <li :class="otherChosen ? 'selected' : ''">
-      <slot />
+      <input
+        type="text"
+        :placeholder="otherPlaceholder"
+        @focus="$emit('input', $event.target.value)"
+        @input="$emit('input', $event.target.value)"
+      />
     </li>
   </ul>
 </template>
 
 <script>
 export default {
-  props: ['value', 'list', 'otherChosen'],
+  props: ['value', 'list', 'otherPlaceholder'],
+
+  computed: {
+    otherChosen () {
+      return !!this.value.length && !this.list.includes(this.value)
+    },
+  },
 }
 </script>
 
