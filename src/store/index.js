@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import secureRandom from 'secure-random'
+
 import { firebaseAction, firebaseMutations } from 'vuexfire'
 
 import { db } from '@/db/firebaseConfig'
@@ -22,6 +24,17 @@ export default new Vuex.Store({
     },
 
     listings: [],
+    userKeys: null,
+  },
+
+  getters: {
+    currentSecureEmail (state) {
+      if (!!state.userKeys) {
+        return `listing+${state.userKeys.email}@beeseeking.com`
+      } else {
+        return ''
+      }
+    },
   },
 
   mutations: {
@@ -85,9 +98,22 @@ export default new Vuex.Store({
       commit('resetNewListing')
     },
 
-    initApp: firebaseAction(({ bindFirebaseRef, commit }, payload) => {
+    initApp: firebaseAction(({ bindFirebaseRef, commit, state }, payload) => {
       commit('currentUser', payload.currentUser)
       bindFirebaseRef('listings', db.ref('listings'))
+
+      bindFirebaseRef('userKeys', db.ref(`keys/${state.currentUser.uid}`), {
+        readyCallback: () => {
+          if (!state.userKeys || !state.userKeys.email) {
+            const data = secureRandom.randomBuffer(10)
+            const emailHex = data.toString('hex')
+
+            db.ref(`keys/${state.currentUser.uid}`).set({
+              email: emailHex,
+            })
+          }
+        },
+      })
     }),
   },
 })

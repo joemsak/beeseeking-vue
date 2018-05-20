@@ -17,11 +17,8 @@ export default {
   methods: {
     handleGoogle () {
       firebase.auth().signInWithPopup(auth_providers.google).then(result => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
-        // ...
+        const token = result.credential.accessToken;
+        const user = result.user
       }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
