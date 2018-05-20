@@ -56,24 +56,12 @@ export default new Vuex.Store({
     resetNewListing (state) {
       state.newListing = {
         place: '',
-
         numberOfHives: '',
-        numberOfHivesOther: '',
-
         hoursAccessible: '',
-        hoursAccessibleOther: '',
-
         gatewayType: '',
-        gatewayTypeOther: '',
-
         accessType: '',
-        accessTypeOther: '',
-
         privacyType: '',
-        privacyTypeOther: '',
-
         propertyType: '',
-        propertyTypeOther: '',
       }
     },
 
