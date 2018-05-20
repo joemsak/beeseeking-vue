@@ -8,12 +8,17 @@
     </router-link>
 
     {{ currentUser.displayName }}
+
+    <a :href="`mailto:${currentSecureEmail}`">{{ currentSecureEmail }}</a>
+
     <a @click.prevent="logout">Log out</a>
+
+    <h2>Your Listings</h2>
 
     <div>
       <div
         class="listing-item"
-        v-for="listing in listings"
+        v-for="listing in userListings"
         :key="listing['.key']"
       >
         <dl>
@@ -40,11 +45,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import firebase from 'firebase'
 
 export default {
-  computed: mapState(['listings', 'currentUser']),
+  computed: {
+    ...mapState(['userListings', 'currentUser']),
+    ...mapGetters(['currentSecureEmail']),
+  },
 
   methods: {
     logout () {

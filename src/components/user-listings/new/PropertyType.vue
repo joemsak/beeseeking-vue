@@ -49,22 +49,22 @@ export default {
     return {
       propertyType: '',
       propertyTypes: [
-        'Farm',
-        'Backyard or Lawn',
-        'Community Garden',
-        'Building',
+        '🚜 Farm',
+        '🏡 Backyard or Lawn',
+        '🥗 Community Garden',
+        '🏬 Building',
       ],
 
       privacyType: '',
       privacyTypes: [
-        'Public space',
-        'Private space',
+        '✅ Public space',
+        '⛔️ Private space',
       ],
 
       accessType: '',
       accessTypes: [
-        'Ground',
-        'Roof',
+        '🚶‍ Ground',
+        '🔝 Roof',
       ],
     }
   },

@@ -6,16 +6,10 @@
 
     I can host...
     <listing-inputs
-      :other-chosen="numberOfHivesOther.length"
+      other-placeholder="A more specific number..."
       :list="numberOfHivesOptions"
       v-model="numberOfHives"
-    >
-      <input
-        type="text"
-        placeholder="A specific number..."
-        v-model="numberOfHivesOther"
-      />
-    </listing-inputs>
+    />
 
     <p>Help link to go here - a guide to hive sizes</p>
 
@@ -46,7 +40,6 @@ export default {
   data () {
     return {
       numberOfHives: '',
-      numberOfHivesOther: '',
       numberOfHivesOptions: [
         'just one',
         '2 or 3',
@@ -63,17 +56,7 @@ export default {
   },
 
   watch: {
-    numberOfHivesOther () {
-      if (this.numberOfHivesOther.length) this.numberOfHives = ''
-
-      this.$store.dispatch('updateNewListingProps', {
-        numberOfHivesOther: this.numberOfHivesOther,
-      })
-    },
-
     numberOfHives () {
-      if (this.numberOfHives.length) this.numberOfHivesOther = ''
-
       this.$store.dispatch('updateNewListingProps', {
         numberOfHives: this.numberOfHives,
       })
@@ -82,7 +65,6 @@ export default {
 
   mounted () {
     this.numberOfHives = this.newListing.numberOfHives
-    this.numberOfHivesOther = this.newListing.numberOfHivesOther
   },
 }
 </script>

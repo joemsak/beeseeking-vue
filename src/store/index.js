@@ -23,8 +23,9 @@ export default new Vuex.Store({
       propertyType: '',
     },
 
-    listings: [],
     userKeys: null,
+
+    userListings: [],
   },
 
   getters: {
@@ -86,21 +87,14 @@ export default new Vuex.Store({
 
     saveNewListing ({ commit, state }) {
       let listing = Object.assign({}, state.newListing)
-
-      listing.propertyType = listing.propertyType || listing.propertyTypeOther
-      listing.privacyType = listing.privacyType || listing.privacyTypeOther
-      listing.gatewayType = listing.gatewayType || listing.gatewayTypeOther
-      listing.accessType = listing.accessType || listing.accessTypeOther
-      listing.hoursAccessible = listing.hoursAccessible || listing.hoursAccessibleOther
-      listing.numberOfHives = listing.numberOfHives || listing.numberOfHivesOther
-
-      db.ref('listings').push(listing)
+      db.ref(`listings/${state.currentUser.uid}`).push(listing)
       commit('resetNewListing')
     },
 
     initApp: firebaseAction(({ bindFirebaseRef, commit, state }, payload) => {
       commit('currentUser', payload.currentUser)
-      bindFirebaseRef('listings', db.ref('listings'))
+
+      bindFirebaseRef('userListings', db.ref(`listings/${state.currentUser.uid}`))
 
       bindFirebaseRef('userKeys', db.ref(`keys/${state.currentUser.uid}`), {
         readyCallback: () => {

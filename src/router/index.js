@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Listings from '@/components/listings'
+import Listings from '@/components/user-listings'
 
-import NewListing from '@/components/listings/new'
-import PropertyType from '@/components/listings/new/PropertyType'
-import Place from '@/components/listings/new/Place'
-import NumberOfHives from '@/components/listings/new/NumberOfHives'
-import GatewayType from '@/components/listings/new/GatewayType'
+import NewListing from '@/components/user-listings/new'
+import PropertyType from '@/components/user-listings/new/PropertyType'
+import Place from '@/components/user-listings/new/Place'
+import NumberOfHives from '@/components/user-listings/new/NumberOfHives'
+import GatewayType from '@/components/user-listings/new/GatewayType'
 
 Vue.use(Router)
 

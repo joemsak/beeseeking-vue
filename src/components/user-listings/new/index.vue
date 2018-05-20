@@ -3,7 +3,7 @@
     <div class="col-sm-10">
       <div class="with-backpage">
         <router-link :to="{ name: 'listings' }" tag="nav" id="backpage">
-          <span>Listings</span>
+          <span>Your Listings</span>
         </router-link>
 
         <div class="container new-listing">
