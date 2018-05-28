@@ -93,6 +93,8 @@ export default new Vuex.Store({
             db.ref(`keys/${state.currentUser.uid}`).set({
               email: emailHex,
             })
+
+            db.ref(`emailKeys/${emailHex}`).set(state.currentUser.uid)
           }
         },
       })
