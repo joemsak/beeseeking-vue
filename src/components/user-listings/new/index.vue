@@ -65,6 +65,12 @@ export default {
     padding: 1rem;
   }
 
+  .new-listing__details {
+    position: -webkit-sticky;
+    position: sticky;
+    top: -1px;
+  }
+
   h1 {
     font-size: 1.2rem;
   }
