@@ -25,7 +25,7 @@ admin.initializeApp({
 });
 
 const config = {
-  apiKey: functions.config().firebase_db.api_key,
+  apiKey: functions.config().db.api_key,
   authDomain: "beeseeking-e0c70.firebaseapp.com",
   databaseURL: "https://beeseeking-e0c70.firebaseio.com",
   projectId: "beeseeking-e0c70",
